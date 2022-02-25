@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* COLORS */
+.bg-primary-new {
+  background-color: #f2f6f9;
+}
+
+.bg-dark-new {
+  background-color: #082f39;
+}
+
+.bg-medium-new {
+  background-color: #2187ad;
+}
+
+.bg-light-new {
+  background-color: #9bdaf5;
+}
+
+.bg-white-new {
+  background-color: #fefefe;
+}
+
+.box-shadow-new {
+  box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+.text-dark-new {
+  color: #082f39;
+}
+
+.text-medium-new {
+  color: #2187ad;
+}
+
+.text-light-new {
+  color: #9bdaf5;
+}
+
+/* REMOVE DEFAULT PADDING */
+no-padding {
+  padding: 0px !important;
+}
