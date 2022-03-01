@@ -1,32 +1,72 @@
 import React from 'react';
-// import {  } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaDog, FaCompass, FaUser } from 'react-icons/fa';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Navbar() {
-  return (
-    <nav className="navbar shadow-lg bg-primary-new text-neutral-content">
-      <div className="container mx-auto flex flex-row">
-        <div className="flex-none hidden md:inline px-2 mx-2">
-          <Link to="/" className="text-lg font-bold align-middle">
-            LOGO
-          </Link>
-        </div>
+  const navigate = useNavigate();
+  const location = useLocation();
 
-        <div className="flex-1 px-2 mx-2">
-          <div className="flex justify-end">
-            <Link to="/" className="mx-3 text-black">
-              Home
-            </Link>
-            <Link to="/about" className="mx-3 text-black">
-              About
-            </Link>
-            <Link to="/contact" className="mx-3 text-black">
-              Contact
-            </Link>
-          </div>
-        </div>
-      </div>
-    </nav>
+  const pathMatchRoute = (route) => {
+    if (route == location.pathname) {
+      return true;
+    }
+  };
+
+  return (
+    <footer className="navbar">
+      <nav className="navbarNav">
+        <ul className="navbarListItems">
+          <li className="navbarListItem" onClick={() => navigate('/')}>
+            <FaCompass
+              className="navbarListItemIcon"
+              size={56}
+              fill={pathMatchRoute('/') ? '#ffffff' : '#127890'}
+            />
+            <p
+              className={
+                pathMatchRoute('/')
+                  ? 'navbarListItemNameActive'
+                  : 'navbarListName'
+              }
+            >
+              Explore
+            </p>
+          </li>
+          <li className="navbarListItem" onClick={() => navigate('/buddies')}>
+            <FaDog
+              className="navbarListItemIcon"
+              size={56}
+              fill={pathMatchRoute('/buddies') ? '#ffffff' : '#127890'}
+            />
+            <p
+              className={
+                pathMatchRoute('/buddies')
+                  ? 'navbarListItemNameActive'
+                  : 'navbarListName'
+              }
+            >
+              Buddies
+            </p>
+          </li>
+          <li className="navbarListItem" onClick={() => navigate('/profile')}>
+            <FaUser
+              size={56}
+              className="navbarListItemIcon"
+              fill={pathMatchRoute('/profile') ? '#ffffff' : '#127890'}
+            />
+            <p
+              className={
+                pathMatchRoute('/profile')
+                  ? 'navbarListItemNameActive'
+                  : 'navbarListName'
+              }
+            >
+              Profile
+            </p>
+          </li>
+        </ul>
+      </nav>
+    </footer>
   );
 }
 
