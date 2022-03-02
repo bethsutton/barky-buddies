@@ -459,8 +459,9 @@ button {
   display: flex;
   justify-content: center;
 }
+
 .exploreCategories a {
-  width: 48%;
+  max-width: 48%;
 }
 
 .exploreCategoriesGroup {
@@ -468,12 +469,18 @@ button {
 }
 
 .exploreCategoryImg {
-  min-height: 130px;
-  width: 100%;
+  width: 175px;
+  height: auto;
   border-radius: 0.5rem;
   object-fit: cover;
   margin: 0 auto;
-  border: 2px solid #ffffff;
+  border: 1px solid #ffffff;
+}
+
+@media (min-width: 1024px) {
+  .exploreCategoryImg {
+    width: 300px;
+  }
 }
 
 .exploreCategoryName {
@@ -732,11 +739,12 @@ button {
 .changePersonalDetails {
   cursor: pointer;
   font-weight: 600;
-  color: #00cc66;
+  color: #8ecae6;
 }
 
 .profileCard {
   background-color: #ffffff;
+  color: #023047;
   border-radius: 1rem;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.2);

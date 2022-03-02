@@ -2,7 +2,10 @@ import React from 'react';
 import Spinner from '../components/Spinner';
 
 // IMAGES
-import dogImage from '../components/assets/dog.jpg';
+import neutralBuddy from '../components/assets/neutral-buddy.jpeg';
+import reactiveBuddy from '../components/assets/reactive-buddy.jpeg';
+import excitedBuddy from '../components/assets/excited-buddy.jpeg';
+import babyBuddy from '../components/assets/baby-buddy.jpeg';
 
 function Explore() {
   return (
@@ -17,21 +20,21 @@ function Explore() {
         <div className="exploreCategories">
           <div className="exploreCategoriesGroup">
             <div>
-              <img src={dogImage} alt="" className="exploreCategoryImg" />
+              <img src={reactiveBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Reactive Buddies</p>
             </div>
             <div>
-              <img src={dogImage} alt="" className="exploreCategoryImg" />
+              <img src={excitedBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Excited Buddies</p>
             </div>
           </div>
           <div className="exploreCategoriesGroup">
             <div>
-              <img src={dogImage} alt="" className="exploreCategoryImg" />
+              <img src={babyBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Baby Buddies</p>
             </div>
             <div>
-              <img src={dogImage} alt="" className="exploreCategoryImg" />
+              <img src={neutralBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Neutral Buddies</p>
             </div>
           </div>
