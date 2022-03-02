@@ -474,7 +474,7 @@ button {
   border-radius: 0.5rem;
   object-fit: cover;
   margin: 0 auto;
-  border: 1px solid #ffffff;
+  /* border: 1px solid #ffffff; */
 }
 
 @media (min-width: 1024px) {

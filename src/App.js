@@ -24,7 +24,6 @@ function App() {
           {/* :categoryName NAME FOR PARAMS IN CATEGORY PAGE */}
           {/* <Route path="/category/:categoryName" element={<Category />} /> */}
 
-          {/* <Route path="/profile" element={<SignIn />} /> */}
           {/* PRIVATE ROUTE */}
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />

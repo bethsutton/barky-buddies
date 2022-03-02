@@ -156,33 +156,3 @@ function Profile() {
 }
 
 export default Profile;
-
-// const auth = getAuth();
-
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [formData, setFormData] = useState({
-//     name: auth.currentUser.displayName,
-//     email: auth.currentUser.email,
-//   });
-
-//   const { name, email } = formData;
-
-//   const navigate = useNavigate();
-
-//   const onLogout = () => {
-//     auth.signOut();
-//     navigate('/');
-//   };
-
-//   return (
-//     <div className="profile">
-//       <header className="pageTitle">
-//         <p className="pageHeader">My Profile</p>
-//         <button type="button" className="logOut" onClick={onLogout}>
-//           Logout
-//         </button>
-//       </header>
-//       <main></main>
-//     </div>
-//   );
