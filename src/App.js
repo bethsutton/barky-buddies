@@ -11,26 +11,28 @@ import Buddies from './pages/Buddies';
 import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   return (
     <>
       <Router>
-        <img className="barky-buddies-title" src={title} alt="Barky Buddies" />;
+        <img className="barky-buddies-title" src={title} alt="Barky Buddies" />
         <Routes>
           <Route path="/" element={<Explore />} />
           <Route path="/buddies" element={<Buddies />} />
           {/* :categoryName NAME FOR PARAMS IN CATEGORY PAGE */}
           {/* <Route path="/category/:categoryName" element={<Category />} /> */}
 
+          {/* <Route path="/profile" element={<SignIn />} /> */}
           {/* PRIVATE ROUTE */}
-          {/* <Route path="/profile" element={<PrivateRoute />}>
+          <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
-          </Route> */}
+          </Route>
 
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           {/* <Route path="/create-listing" element={<CreateListing />} /> */}
           {/* <Route path="/edit-listing/:listingId" element={<EditListing />} /> */}
           {/* <Route
