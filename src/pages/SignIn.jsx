@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 
 // ICONS
-import { FaEye, FaArrowRight } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaArrowRight } from 'react-icons/fa';
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import OAuth from '../components/OAuth';
@@ -74,11 +74,12 @@ function SignIn() {
                 value={password}
                 onChange={onChange}
               />
-              <FaEye
-                alt="show password"
+              <div
                 className="showPassword"
                 onClick={() => setShowPassword((prevState) => !prevState)}
-              />
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </div>
             </div>
             {/* FORGOT PASSWORD LINK */}
             <Link to="/forgot-password" className="forgotPasswordLink">

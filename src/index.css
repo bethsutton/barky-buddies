@@ -147,21 +147,23 @@ button {
 }
 
 .pageContainer,
-.offers,
+.buddies,
 .profile,
 .listingDetails,
 .category,
 .explore {
   margin: 1rem;
+  padding-bottom: 5rem;
 }
 @media (min-width: 1024px) {
   .pageContainer,
-  .offers,
+  .buddies,
   .profile,
   .listingDetails,
   .category,
   .explore {
-    margin: 3rem;
+    margin: 3rem 10rem 3rem 10rem;
+    padding-bottom: 10rem;
   }
 }
 
@@ -278,9 +280,12 @@ button {
 .showPassword {
   cursor: pointer;
   position: absolute;
-  top: -4%;
+  top: -7%;
   right: 1%;
   padding: 1rem;
+  color: #127890;
+  font-weight: 600;
+  font-size: 25px;
 }
 
 .forgotPasswordLink {
@@ -890,11 +895,11 @@ button {
   margin-top: 5rem;
 }
 
-.offers {
+.buddies {
   margin-bottom: 10rem;
 }
 
-.offerBadge {
+.buddiesBadge {
   padding: 0.25rem 0.5rem;
   background-color: #000000;
   color: #ffffff;

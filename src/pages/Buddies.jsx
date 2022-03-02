@@ -4,9 +4,13 @@ import Dog from '../components/Dog';
 
 function Buddies() {
   return (
-    <div className="dog-container">
-      <p className="pageTitle">Coming Soon!</p>
-      <Dog />
+    <div className="category">
+      <header>
+        <p className="pageTitle">Coming Soon!</p>
+      </header>
+      <div className="dog-container">
+        <Dog />
+      </div>
     </div>
   );
 }

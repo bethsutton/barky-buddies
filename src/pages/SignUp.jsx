@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // ICONS
-import { FaEye, FaArrowRight } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaArrowRight } from 'react-icons/fa';
 
 import {
   getAuth,
@@ -103,11 +103,12 @@ function SignUp() {
                 value={password}
                 onChange={onChange}
               />
-              <FaEye
-                alt="show password"
+              <div
                 className="showPassword"
                 onClick={() => setShowPassword((prevState) => !prevState)}
-              />
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </div>
             </div>
 
             {/* SIGN UP BAR */}
