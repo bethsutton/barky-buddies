@@ -26,14 +26,14 @@ function ForgotPassword() {
   return (
     <div className="pageContainer">
       <header>
-        <p className="pageHeader">Forgot Password</p>
+        <p className="pageTitle">Forgot Password</p>
       </header>
       <main>
         <form onSubmit={onSubmit}>
           <input
             type="email"
             className="emailInput"
-            placeholder="email"
+            placeholder="Email"
             id="email"
             value={email}
             onChange={onChange}
@@ -43,9 +43,9 @@ function ForgotPassword() {
           </Link>
 
           <div className="signInBar">
-            <div className="signInText">Send Reset Link</div>
-            <button className="signInButton">
-              <FaArrowRight fill="#ffffff" width="34px" height="34px" />
+            <button className="primaryButton">
+              <div className="signInText">Send Reset Link</div>
+              {/* <FaArrowRight fill="#ffffff" width="34px" height="34px" /> */}
             </button>
           </div>
         </form>
