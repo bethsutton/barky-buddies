@@ -13,7 +13,7 @@ import {
 import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
 import Spinner from '../components/Spinner';
-import Buddy from '../components/Buddy';
+import BuddyItem from '../components/BuddyItem';
 
 function Category() {
   const [buddies, setBuddies] = useState(null);
@@ -114,7 +114,7 @@ function Category() {
           <main>
             <div className="categoryListings">
               {buddies.map((buddy) => (
-                <Buddy buddy={buddy.data} id={buddy.id} key={buddy.id} />
+                <BuddyItem buddy={buddy.data} id={buddy.id} key={buddy.id} />
                 // <p key={buddy.id}>{buddy.data.name}</p>
               ))}
             </div>

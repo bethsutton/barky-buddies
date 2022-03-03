@@ -150,6 +150,10 @@ function Profile() {
             />
           </form>
         </div>
+
+        <Link to="/create-buddy" className="createListing">
+          <p>Add a dog</p>
+        </Link>
       </main>
     </div>
   );

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // ICONS
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
-function Buddy({ buddy, id }) {
+function BuddyItem({ buddy, id }) {
   return (
     <li className="categoryListing">
       <Link
@@ -16,17 +16,20 @@ function Buddy({ buddy, id }) {
           className="categoryListingImg"
         />
         <div className="categoryListingDetails">
-          <p className="categoryListingLocation">{buddy.name}</p>
-          <p className="categoryListingName">{buddy.age}</p>
+          <p className="categoryListingName">{buddy.name}</p>
           <div className="categoryListingInfoDiv">
-            <p>Goal: {buddy.goal}</p>
-            <p>Needs: {buddy.needs[0]}</p>
+            <p className="categoryListingInfoText">Triggers: </p>
+            <p className="categoryListingInfoText">Needs: {buddy.needs[0]}</p>
+            <p className="categoryListingInfoText">Goal: {buddy.goal}</p>
+            <div className="type-button">
+              <p className="type-button-text">I am {buddy.type}!</p>
+            </div>
           </div>
         </div>
       </Link>
 
       {/* {onDelete && (
-        <DeleteIcon
+        <FaTrash
           className="removeIcon"
           fill="rgb(231,76,60)"
           onClick={() => onDelete(listing.id, listing.name)}
@@ -34,7 +37,7 @@ function Buddy({ buddy, id }) {
       )} */}
 
       {/* {onEdit && (
-        <EditIcon
+        <FaEdit
           className="editIcon"
           // fill="rgb(231,76,60)"
           onClick={() => onEdit(id)}
@@ -44,4 +47,4 @@ function Buddy({ buddy, id }) {
   );
 }
 
-export default Buddy;
+export default BuddyItem;
