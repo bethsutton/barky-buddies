@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 
 // IMAGES
@@ -11,32 +12,32 @@ function Explore() {
   return (
     <div className="explore">
       <header>
-        <p className="pageTitle">New Practice Sessions</p>
+        <p className="pageTitle">New Training Sessions</p>
       </header>
       <main>
         {/* <Slider /> */}
 
-        <p className="pageTitle">Explore Practice Sessions</p>
+        <p className="pageTitle">Explore Buddies</p>
         <div className="exploreCategories">
           <div className="exploreCategoriesGroup">
-            <div>
+            <Link to="/category/reactive">
               <img src={reactiveBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Reactive Buddies</p>
-            </div>
-            <div>
+            </Link>
+            <Link to="/category/excited">
               <img src={excitedBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Excited Buddies</p>
-            </div>
+            </Link>
           </div>
           <div className="exploreCategoriesGroup">
-            <div>
+            <Link to="/category/baby">
               <img src={babyBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Baby Buddies</p>
-            </div>
-            <div>
+            </Link>
+            <Link to="/category/neutral">
               <img src={neutralBuddy} alt="" className="exploreCategoryImg" />
               <p className="exploreCategoryName">Neutral Buddies</p>
-            </div>
+            </Link>
           </div>
         </div>
       </main>

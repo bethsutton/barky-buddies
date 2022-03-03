@@ -32,20 +32,20 @@ function Navbar() {
               Explore
             </p>
           </li>
-          <li className="navbarListItem" onClick={() => navigate('/buddies')}>
+          <li className="navbarListItem" onClick={() => navigate('/train')}>
             <FaDog
               className="navbarListItemIcon"
               size={56}
-              fill={pathMatchRoute('/buddies') ? '#ffffff' : '#127890'}
+              fill={pathMatchRoute('/train') ? '#ffffff' : '#127890'}
             />
             <p
               className={
-                pathMatchRoute('/buddies')
+                pathMatchRoute('/train')
                   ? 'navbarListItemNameActive'
                   : 'navbarListName'
               }
             >
-              Buddies
+              Train
             </p>
           </li>
           <li className="navbarListItem" onClick={() => navigate('/profile')}>

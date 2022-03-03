@@ -2,11 +2,11 @@ import React from 'react';
 // COMPONENTS
 import Dog from '../components/Dog';
 
-function Buddies() {
+function Train() {
   return (
     <div className="category">
       <header>
-        <p className="pageTitle">Coming Soon!</p>
+        <p className="pageTitle">Training Sessions</p>
       </header>
       <div className="dog-container">
         <Dog />
@@ -15,4 +15,4 @@ function Buddies() {
   );
 }
 
-export default Buddies;
+export default Train;

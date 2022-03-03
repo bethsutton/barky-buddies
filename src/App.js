@@ -7,11 +7,12 @@ import title from './components/assets/barky-buddies-title.png';
 import PrivateRoute from './components/PrivateRoute';
 // PAGES
 import Explore from './pages/Explore';
-import Buddies from './pages/Buddies';
+import Train from './pages/Train';
 import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import ForgotPassword from './pages/ForgotPassword';
+import Category from './pages/Category';
 
 function App() {
   return (
@@ -20,9 +21,10 @@ function App() {
         <img className="barky-buddies-title" src={title} alt="Barky Buddies" />
         <Routes>
           <Route path="/" element={<Explore />} />
-          <Route path="/buddies" element={<Buddies />} />
-          {/* :categoryName NAME FOR PARAMS IN CATEGORY PAGE */}
-          {/* <Route path="/category/:categoryName" element={<Category />} /> */}
+          <Route path="/train" element={<Train />} />
+
+          {/* :buddyType NAME FOR PARAMS IN CATEGORY PAGE */}
+          <Route path="/category/:buddyType" element={<Category />} />
 
           {/* PRIVATE ROUTE */}
           <Route path="/profile" element={<PrivateRoute />}>
@@ -32,13 +34,14 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          {/* <Route path="/create-listing" element={<CreateListing />} /> */}
-          {/* <Route path="/edit-listing/:listingId" element={<EditListing />} /> */}
+
+          {/* <Route path="/create-buddy" element={<CreateBuddy />} /> */}
+          {/* <Route path="/edit-buddy/:buddyId" element={<EditBuddy />} /> */}
           {/* <Route
-            path="/category/:categoryName/:listingId"
-            element={<Listing />}
+            path="/category/:buddyType/:buddyId"
+            element={<Buddy />}
           /> */}
-          {/* <Route path="/contact/:landlordId" element={<Contact />} /> */}
+          {/* <Route path="/contact/:parentId" element={<Contact />} /> */}
         </Routes>
         <Navbar />
       </Router>
