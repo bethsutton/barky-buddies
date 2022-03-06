@@ -49,7 +49,7 @@ function Profile() {
 
       let buddies = [];
 
-      console.log(auth.currentUser);
+      // console.log(auth.currentUser);
 
       querySnap.forEach((doc) => {
         return buddies.push({

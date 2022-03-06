@@ -14,6 +14,7 @@ import SignIn from './pages/SignIn';
 import ForgotPassword from './pages/ForgotPassword';
 import Category from './pages/Category';
 import CreateBuddy from './pages/CreateBuddy';
+import Buddy from './pages/Buddy';
 
 function App() {
   return (
@@ -38,10 +39,7 @@ function App() {
 
           <Route path="/create-buddy" element={<CreateBuddy />} />
           {/* <Route path="/edit-buddy/:buddyId" element={<EditBuddy />} /> */}
-          {/* <Route
-            path="/category/:buddyType/:buddyId"
-            element={<Buddy />}
-          /> */}
+          <Route path="/category/:buddyType/:buddyId" element={<Buddy />} />
           {/* <Route path="/contact/:parentId" element={<Contact />} /> */}
         </Routes>
         <Navbar />
