@@ -977,3 +977,20 @@ button {
   margin: 1rem;
   padding: 0;
 }
+
+/* BUDDY PAGE */
+.about-section {
+  margin: 2rem;
+}
+
+.about-page-info {
+  margin: 1rem;
+}
+
+.about-page-info-text {
+  font-size: 18px;
+}
+
+.about-type-button {
+  margin-bottom: 10px;
+}
