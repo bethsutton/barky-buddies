@@ -20,8 +20,8 @@ function CreateBuddy() {
     type: 'neutral',
     name: '',
     // triggers: '',
-    // needs: '',
-    // goals: '',
+    needs: '6 feet',
+    goal: 'pass another dog calmly',
     age: 1,
     images: {},
   });
@@ -30,8 +30,8 @@ function CreateBuddy() {
     type,
     name,
     // triggers,
-    // needs,
-    // goals,
+    needs,
+    goal,
     age,
     images,
   } = formData;
@@ -247,6 +247,132 @@ function CreateBuddy() {
                 required
               />
             </div>
+          </div>
+
+          {/* NEEDS */}
+          <label className="formLabel">
+            How much space does your dog need from a buddy?
+          </label>
+          <div className="formButtons formType">
+            {/* 6FT BUTTON */}
+            <button
+              type="button"
+              className={needs === '6 feet' ? 'formButtonActive' : 'formButton'}
+              id="needs"
+              value="6 feet"
+              onClick={onMutate}
+            >
+              6 feet
+            </button>
+            {/* ACROSS THE STREET BUTTON */}
+            <button
+              type="button"
+              className={
+                needs === 'across the street'
+                  ? 'formButtonActive'
+                  : 'formButton'
+              }
+              id="needs"
+              value="across the street"
+              onClick={onMutate}
+            >
+              Across the street
+            </button>
+          </div>
+          <div className="formButtons formType">
+            {/* ONE BLOCK BUTTON */}
+            <button
+              type="button"
+              className={
+                needs === 'a football field' ? 'formButtonActive' : 'formButton'
+              }
+              id="needs"
+              value="a football field"
+              onClick={onMutate}
+            >
+              A football field
+            </button>
+            {/* NO SPACE NEEDED BUTTON */}
+            <button
+              type="button"
+              className={
+                needs === 'no space needed' ? 'formButtonActive' : 'formButton'
+              }
+              id="needs"
+              value="no space needed"
+              onClick={onMutate}
+            >
+              No space needed
+            </button>
+          </div>
+
+          {/* GOAL */}
+          <label className="formLabel">
+            What is your current goal for your dog?
+          </label>
+          <div className="formButtons formType">
+            {/* PASS A DOG BUTTON */}
+            <button
+              type="button"
+              className={
+                goal === 'pass another dog calmly'
+                  ? 'formButtonActive'
+                  : 'formButton'
+              }
+              id="goal"
+              value="pass another dog calmly"
+              onClick={onMutate}
+            >
+              Pass another dog calmly
+            </button>
+          </div>
+          <div className="formButtons formType">
+            {/* GREET A DOG BUTTON */}
+            <button
+              type="button"
+              className={
+                goal === 'greet another dog calmly'
+                  ? 'formButtonActive'
+                  : 'formButton'
+              }
+              id="goal"
+              value="greet another dog calmly"
+              onClick={onMutate}
+            >
+              Greet another dog calmly
+            </button>
+          </div>
+          <div className="formButtons formType">
+            {/* OUTSIDE HOME BUTTON */}
+            <button
+              type="button"
+              className={
+                goal === 'calmly watch a dog pass our house'
+                  ? 'formButtonActive'
+                  : 'formButton'
+              }
+              id="goal"
+              value="calmly watch a dog pass our house"
+              onClick={onMutate}
+            >
+              Calmly watch a dog pass our house
+            </button>
+          </div>
+          <div className="formButtons formType">
+            {/* WALK AWAY BUTTON */}
+            <button
+              type="button"
+              className={
+                goal === 'walk away from a barking dog'
+                  ? 'formButtonActive'
+                  : 'formButton'
+              }
+              id="goal"
+              value="walk away from a barking dog"
+              onClick={onMutate}
+            >
+              Walk away from a barking dog
+            </button>
           </div>
 
           {/* IMAGES */}
