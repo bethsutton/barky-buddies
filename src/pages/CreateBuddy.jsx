@@ -44,6 +44,7 @@ function CreateBuddy() {
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          // USER ID ADDED TO FORM DATA
           setFormData({ ...formData, userRef: user.uid });
         } else {
           navigate('/sign-in');
@@ -393,7 +394,7 @@ function CreateBuddy() {
 
           {/* CREATE LISTING BUTTON */}
           <button type="submit" className="primaryButton createListingButton">
-            Add dog
+            Add my buddy
           </button>
         </form>
       </main>

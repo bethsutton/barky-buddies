@@ -15,6 +15,8 @@ import {
 import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
 
+import BuddyItem from '../components/BuddyItem';
+
 // ICONS
 import { FaEdit } from 'react-icons/fa';
 
@@ -151,8 +153,31 @@ function Profile() {
           </form>
         </div>
 
-        <Link to="/create-buddy" className="createListing">
-          <p>Add a dog</p>
+        <br></br>
+
+        {/* MY DOGS */}
+        {!loading && buddies?.length > 0 && (
+          <>
+            <p className="pageTitle">My Dogs</p>
+            <ul className="myDogsList">
+              {buddies.map((buddy) => (
+                <BuddyItem
+                  key={buddy.id}
+                  buddy={buddy.data}
+                  id={buddy.id}
+                  // onDelete={() => onDelete(listing.id)}
+                  // onEdit={() => onEdit(listing.id)}
+                />
+              ))}
+            </ul>
+          </>
+        )}
+
+        <br></br>
+
+        {/* CREATE A BUDDY */}
+        <Link to="/create-buddy" className="primaryButton">
+          Add another dog
         </Link>
       </main>
     </div>

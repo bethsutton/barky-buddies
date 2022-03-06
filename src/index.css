@@ -512,7 +512,7 @@ button {
 
 .categoryListingImg {
   width: 40%;
-  height: 100px;
+  height: 200px;
   border-radius: 1.5rem;
   object-fit: cover;
   margin-right: 10px;
@@ -970,4 +970,10 @@ button {
   align-items: center;
   justify-content: center;
   height: 400px;
+}
+
+/* MY DOGS LIST */
+.myDogsList {
+  margin: 1rem;
+  padding: 0;
 }
