@@ -16,6 +16,7 @@ import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
 
 import BuddyItem from '../components/BuddyItem';
+import SessionItem from '../components/SessionItem';
 
 // ICONS
 import { FaEdit } from 'react-icons/fa';
@@ -25,6 +26,7 @@ function Profile() {
 
   const [changeDetails, setChangeDetails] = useState(false);
   const [buddies, setBuddies] = useState(null);
+  const [sessions, setSessions] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
@@ -59,6 +61,34 @@ function Profile() {
       });
 
       setBuddies(buddies);
+
+      // GET SESSIONS
+      const sessionsRef = collection(db, 'sessions');
+
+      // CREATE A QUERY
+      const secondQ = query(
+        sessionsRef,
+        where('userRef', '==', auth.currentUser.uid),
+        orderBy('timestamp', 'desc')
+        // limit(10)
+      );
+
+      // EXECUTE QUERY
+      const secondQuerySnap = await getDocs(secondQ);
+
+      // const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+
+      // INITIALIZE EMPTY LISTINGS ARRAY
+      const sessions = [];
+
+      // FOR EACH DOC IN QUERY SNAPSHOT,
+      secondQuerySnap.forEach((doc) => {
+        return sessions.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      setSessions(sessions);
       setLoading(false);
     };
     fetchUserBuddies();
@@ -152,6 +182,30 @@ function Profile() {
             />
           </form>
         </div>
+
+        <br></br>
+
+        {/* MY SESSIONS */}
+        {!loading && sessions?.length > 0 && (
+          <>
+            <p className="pageTitle">My Practice Sessions</p>
+            <ul className="myDogsList">
+              {buddies.map((buddy) =>
+                sessions.map(
+                  (session) =>
+                    buddy.id === session.data.buddyId && (
+                      <SessionItem
+                        buddy={buddy.data}
+                        id={buddy.id}
+                        key={buddy.id}
+                        session={session.data}
+                      />
+                    )
+                )
+              )}
+            </ul>
+          </>
+        )}
 
         <br></br>
 
