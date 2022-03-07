@@ -188,7 +188,7 @@ function Profile() {
         {/* MY SESSIONS */}
         {!loading && sessions?.length > 0 && (
           <>
-            <p className="pageTitle">My Practice Sessions</p>
+            <p className="pageTitle">My Training Sessions</p>
             <ul className="myDogsList">
               {buddies.map((buddy) =>
                 sessions.map(
@@ -206,6 +206,13 @@ function Profile() {
             </ul>
           </>
         )}
+
+        <br></br>
+
+        {/* CREATE A SESSION */}
+        <Link to="/create-session" className="primaryButton">
+          Add a training session
+        </Link>
 
         <br></br>
 
