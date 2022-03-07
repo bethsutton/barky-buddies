@@ -28,6 +28,11 @@ function SessionItem({ buddy, id, session }) {
             <div className="type-button">
               <p className="type-button-text">I am {buddy.type}!</p>
             </div>
+            <div className="wanted-button">
+              <p className="wanted-button-text">
+                I want a {session.buddyWanted} buddy!
+              </p>
+            </div>
           </div>
         </div>
       </Link>
