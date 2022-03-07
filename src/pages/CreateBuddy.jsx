@@ -24,6 +24,7 @@ function CreateBuddy() {
     goal: 'pass another dog calmly',
     age: 1,
     images: {},
+    session: false,
   });
 
   const {
@@ -34,6 +35,7 @@ function CreateBuddy() {
     goal,
     age,
     images,
+    session,
   } = formData;
 
   const auth = getAuth();
