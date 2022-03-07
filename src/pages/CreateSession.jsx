@@ -206,5 +206,9 @@ function CreateSession() {
 export default CreateSession;
 
 // Find Buddy for (query buddies, input buddy ID with session details)
-// Set buddy session = true when creating serssion
+// Set buddy session = true when creating session
 // When removing, remove session = true from buddy in buddies
+
+// Make buddies.session an array
+// Have array contain session.id
+// when delete, delete by session.id

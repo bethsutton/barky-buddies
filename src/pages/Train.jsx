@@ -31,6 +31,7 @@ function Train() {
         const q = query(
           buddiesRef,
           where('session', '==', true),
+          // where('session.length', '>', 0)
           orderBy('timestamp', 'desc'),
           limit(10)
         );

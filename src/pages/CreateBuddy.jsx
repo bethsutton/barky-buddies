@@ -60,6 +60,10 @@ function CreateBuddy() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
