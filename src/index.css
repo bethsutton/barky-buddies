@@ -127,6 +127,7 @@ button {
   font-weight: 600;
   font-size: 1.25rem;
   width: 80%;
+  max-width: 25rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -377,7 +378,7 @@ button {
 }
 
 .swiper-container {
-  min-height: 225px;
+  min-height: 300px;
   height: 23vw;
 }
 
@@ -980,7 +981,7 @@ button {
 
 /* BUDDY PAGE */
 .about-section {
-  margin: 2rem;
+  margin: 1rem 2rem 2rem 2rem;
 }
 
 .about-page-info {
@@ -993,4 +994,5 @@ button {
 
 .about-type-button {
   margin-bottom: 10px;
+  margin-top: 2px;
 }

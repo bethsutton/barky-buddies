@@ -1,10 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 import { getDoc, doc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase.config';
 import Spinner from '../components/Spinner';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 function Buddy() {
   const [buddy, setBuddy] = useState(null);
@@ -37,6 +42,24 @@ function Buddy() {
   return (
     <main>
       {/* SLIDER */}
+      <Swiper
+        slidesPerView={1}
+        pagination={{
+          clickable: true,
+        }}
+      >
+        {buddy.imageUrls.map((image, index) => (
+          <SwiperSlide key={index}>
+            <div
+              style={{
+                background: `url(${buddy.imageUrls[index]}) no-repeat center`,
+                backgroundSize: 'cover',
+              }}
+              className="swiperSlideDiv"
+            ></div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
       {/* ABOUT SECTION */}
       <div className="about-section">
