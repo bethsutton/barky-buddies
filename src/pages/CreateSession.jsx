@@ -42,7 +42,8 @@ function CreateSession() {
     longitude: 0,
   });
 
-  const { address, date, buddyId, buddyWanted, latitude, longitude } = formData;
+  const { address, date, time, buddyId, buddyWanted, latitude, longitude } =
+    formData;
 
   const navigate = useNavigate();
   const isMounted = useRef(true);
@@ -322,6 +323,8 @@ function CreateSession() {
             type="date"
             id="date"
             name="date"
+            value={date}
+            onChange={onMutate}
           ></input>
 
           {/* TIME */}
@@ -331,6 +334,8 @@ function CreateSession() {
             type="time"
             id="time"
             name="time"
+            value={time}
+            onChange={onMutate}
           ></input>
 
           {/* CREATE LISTING BUTTON */}
