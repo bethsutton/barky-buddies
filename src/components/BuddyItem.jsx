@@ -6,10 +6,7 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 function BuddyItem({ buddy, id }) {
   return (
     <li className="categoryListing">
-      <Link
-        to={`/category/${buddy.type}/${id}`}
-        className="categoryListingLink"
-      >
+      <Link to={`/${id}`} className="categoryListingLink">
         <img
           src={buddy.imageUrls[0]}
           alt={buddy.name}

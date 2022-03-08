@@ -197,7 +197,7 @@ function Profile() {
                       <SessionItem
                         buddy={buddy.data}
                         id={buddy.id}
-                        key={buddy.id}
+                        key={session.id}
                         session={session.data}
                       />
                     )

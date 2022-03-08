@@ -30,9 +30,10 @@ function Train() {
         // CREATE A QUERY
         const q = query(
           buddiesRef,
-          where('session', '==', true),
-          // where('session.length', '>', 0)
-          orderBy('timestamp', 'desc'),
+          // where('sessions', '==', true),
+          // where('sessions.length', '>', 0),
+          where('sessions', '!=', null),
+          orderBy('sessions', 'desc'),
           limit(10)
         );
 
@@ -107,7 +108,7 @@ function Train() {
                       <SessionItem
                         buddy={buddy.data}
                         id={buddy.id}
-                        key={buddy.id}
+                        key={session.id}
                         session={session.data}
                       />
                     )

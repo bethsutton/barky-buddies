@@ -8,7 +8,11 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 import {
+  doc,
   addDoc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
   collection,
   serverTimestamp,
   getDocs,
@@ -23,17 +27,22 @@ import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../components/Spinner';
 
 function CreateSession() {
+  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [buddies, setBuddies] = useState(null);
+  // const [buddy, setBuddy] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [formData, setFormData] = useState({
     address: '',
     date: '',
+    time: '',
     buddyId: '',
     buddyWanted: 'neutral',
+    latitude: 0,
+    longitude: 0,
   });
 
-  const { address, date, buddyId, buddyWanted } = formData;
+  const { address, date, buddyId, buddyWanted, latitude, longitude } = formData;
 
   const navigate = useNavigate();
   const isMounted = useRef(true);
@@ -94,23 +103,69 @@ function CreateSession() {
 
     setLoading(true);
 
-    if (buddies.length === 0) {
-      setLoading(false);
-      toast.error('Add a dog to create a training session');
-      return;
+    // GEOLOCATION
+    let geolocation = {};
+    let location;
+
+    if (geolocationEnabled) {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCUGNfJY7bXN1crJh-3tZEcf6LuQFXSM5w`
+      );
+
+      // ${process.env.REACT_APP_GEOCODE_API_KEY}
+
+      const data = await response.json();
+
+      geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
+      geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
+
+      location =
+        data.status === 'ZERO_RESULTS'
+          ? undefined
+          : data.results[0]?.formatted_address;
+
+      console.log(geolocation, location);
+
+      if (location === undefined || location.includes('undefined')) {
+        setLoading(false);
+        toast.error('Please enter a correct address');
+        return;
+      }
+    } else {
+      geolocation.lat = latitude;
+      geolocation.lng = longitude;
     }
 
     const formDataCopy = {
       ...formData,
+      geolocation,
       timestamp: serverTimestamp(),
     };
 
+    formDataCopy.location = address;
+    delete formDataCopy.address;
     const docRef = await addDoc(collection(db, 'sessions'), formDataCopy);
+
+    // ADD SESSION ID TO SESSION ARRAY IN FOR BUDDY BUDDIES COLLECTION
+    const secondDocRef = doc(db, 'buddies', buddyId);
+    await updateDoc(secondDocRef, {
+      sessions: arrayUnion(docRef.id),
+    });
+
+    // Atomically add a new region to the "regions" array field.
+    // await updateDoc(washingtonRef, {
+    //   regions: arrayUnion("greater_virginia")
+    // });
+
+    // Atomically remove a region from the "regions" array field.
+    // await updateDoc(washingtonRef, {
+    //   regions: arrayRemove("east_coast")
+    // });
 
     setLoading(false);
 
     toast.success('Training session added');
-    navigate(`/train/${docRef.id}`);
+    navigate(`/${buddyId}`);
   };
 
   // HANDLES WHEN FORM DATA IS CHOSEN
@@ -139,6 +194,7 @@ function CreateSession() {
   //     ...prevState,
   //     buddyId: e.target.value,
   //   }));
+  //   setBuddy(e.target.value)
   //   console.log(formData);
   // };
 
@@ -193,6 +249,90 @@ function CreateSession() {
             </div>
           ))}
 
+          {/* BUDDY WANTED */}
+          <label className="formLabel">I am looking for a...</label>
+          <div className="formButtons formType">
+            {/* REACTIVE BUTTON */}
+            <button
+              type="button"
+              className={
+                buddyWanted === 'reactive' ? 'formButtonActive' : 'formButton'
+              }
+              id="buddyWanted"
+              value="reactive"
+              onClick={onMutate}
+            >
+              Reactive Buddy
+            </button>
+            {/* EXCITED BUTTON */}
+            <button
+              type="button"
+              className={
+                buddyWanted === 'excited' ? 'formButtonActive' : 'formButton'
+              }
+              id="buddyWanted"
+              value="excited"
+              onClick={onMutate}
+            >
+              Excited Buddy
+            </button>
+          </div>
+          <div className="formButtons formType">
+            {/* BABY BUTTON */}
+            <button
+              type="button"
+              className={
+                buddyWanted === 'baby' ? 'formButtonActive' : 'formButton'
+              }
+              id="buddyWanted"
+              value="baby"
+              onClick={onMutate}
+            >
+              Baby Buddy
+            </button>
+            {/* NEUTRAL BUTTON */}
+            <button
+              type="button"
+              className={
+                buddyWanted === 'neutral' ? 'formButtonActive' : 'formButton'
+              }
+              id="buddyWanted"
+              value="neutral"
+              onClick={onMutate}
+            >
+              Neutral Buddy
+            </button>
+          </div>
+
+          {/* ADDRESS */}
+          <label className="formLabel">Address</label>
+          <textarea
+            className="formInputAddress"
+            type="text"
+            id="address"
+            value={address}
+            onChange={onMutate}
+            required
+          />
+
+          {/* DATE */}
+          <label className="formLabel">Date</label>
+          <input
+            className="formInputAddress"
+            type="date"
+            id="date"
+            name="date"
+          ></input>
+
+          {/* TIME */}
+          <label className="formLabel">Time</label>
+          <input
+            className="formInputAddress"
+            type="time"
+            id="time"
+            name="time"
+          ></input>
+
           {/* CREATE LISTING BUTTON */}
           <button type="submit" className="primaryButton createListingButton">
             Add my training session
@@ -205,10 +345,7 @@ function CreateSession() {
 
 export default CreateSession;
 
-// Find Buddy for (query buddies, input buddy ID with session details)
-// Set buddy session = true when creating session
-// When removing, remove session = true from buddy in buddies
-
-// Make buddies.session an array
-// Have array contain session.id
+// Find Buddy for (query buddies, input buddy ID with session details) DONE
+// Make buddies.session an array DONE
+// Have array contain session.id DONE
 // when delete, delete by session.id

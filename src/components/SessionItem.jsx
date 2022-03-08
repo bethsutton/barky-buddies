@@ -4,15 +4,12 @@ import { Link } from 'react-router-dom';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
 function SessionItem({ buddy, id, session }) {
-  const date = session.date.toDate().toDateString();
-  const time = session.date.toDate().toLocaleTimeString('en-US');
+  // const date = session.date.toDate().toDateString();
+  // const time = session.date.toDate().toLocaleTimeString('en-US');
 
   return (
     <li className="categoryListing">
-      <Link
-        to={`/category/${buddy.type}/${id}`}
-        className="categoryListingLink"
-      >
+      <Link to={`/${id}`} className="categoryListingLink">
         <img
           src={buddy.imageUrls[0]}
           alt={buddy.name}
@@ -21,9 +18,9 @@ function SessionItem({ buddy, id, session }) {
         <div className="categoryListingDetails">
           <p className="categoryListingName">{buddy.name}</p>
           <div className="categoryListingInfoDiv">
-            <p className="categoryListingInfoText">Where: {session.address}</p>
+            <p className="categoryListingInfoText">Where: {session.location}</p>
             <p className="categoryListingInfoText">
-              When: {date} at {time}
+              {/* When: {session.date} at {session.time} */}
             </p>
             <div className="type-button">
               <p className="type-button-text">I am {buddy.type}!</p>

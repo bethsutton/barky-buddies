@@ -42,7 +42,7 @@ function App() {
           <Route path="/create-buddy" element={<CreateBuddy />} />
           <Route path="/create-session" element={<CreateSession />} />
           {/* <Route path="/edit-buddy/:buddyId" element={<EditBuddy />} /> */}
-          <Route path="/category/:buddyType/:buddyId" element={<Buddy />} />
+          <Route path="/:buddyId" element={<Buddy />} />
           <Route path="/contact/:parentId" element={<Contact />} />
         </Routes>
         <Navbar />
