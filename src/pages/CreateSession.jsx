@@ -110,7 +110,7 @@ function CreateSession() {
 
     if (geolocationEnabled) {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCUGNfJY7bXN1crJh-3tZEcf6LuQFXSM5w`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
       );
 
       // ${process.env.REACT_APP_GEOCODE_API_KEY}

@@ -6,7 +6,7 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 function SessionItem({ buddy, id, session }) {
   // const date = session.date.toDate().toDateString();
   // const time = session.date.toDate().toLocaleTimeString('en-US');
-  console.log(session.date);
+  // console.log(session.date);
 
   return (
     <li className="categoryListing">
