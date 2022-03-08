@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // ICONS
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
-function BuddyItem({ buddy, id }) {
+function BuddyItem({ buddy, id, onEdit }) {
   return (
     <li className="categoryListing">
       <Link to={`/${id}`} className="categoryListingLink">
@@ -33,13 +33,13 @@ function BuddyItem({ buddy, id }) {
         />
       )} */}
 
-      {/* {onEdit && (
+      {onEdit && (
         <FaEdit
           className="editIcon"
           // fill="rgb(231,76,60)"
           onClick={() => onEdit(id)}
         />
-      )} */}
+      )}
     </li>
   );
 }

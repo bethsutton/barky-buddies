@@ -17,6 +17,7 @@ import CreateBuddy from './pages/CreateBuddy';
 import CreateSession from './pages/CreateSession';
 import Buddy from './pages/Buddy';
 import Contact from './pages/Contact';
+import EditBuddy from './pages/EditBuddy';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
 
           <Route path="/create-buddy" element={<CreateBuddy />} />
           <Route path="/create-session" element={<CreateSession />} />
-          {/* <Route path="/edit-buddy/:buddyId" element={<EditBuddy />} /> */}
+          <Route path="/edit-buddy/:buddyId" element={<EditBuddy />} />
           <Route path="/:buddyId" element={<Buddy />} />
           <Route path="/contact/:parentId" element={<Contact />} />
         </Routes>

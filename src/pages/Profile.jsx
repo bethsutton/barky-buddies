@@ -126,9 +126,9 @@ function Profile() {
     }));
   };
 
-  // const onEdit = (listingId) => {
-  //   navigate(`/edit-listing/${listingId}`);
-  // };
+  const onEdit = (buddyId) => {
+    navigate(`/edit-buddy/${buddyId}`);
+  };
 
   // const onDelete = async (listingId) => {
   //   if (window.confirm('Are you sure you want to delete this listing')) {
@@ -226,8 +226,8 @@ function Profile() {
                   key={buddy.id}
                   buddy={buddy.data}
                   id={buddy.id}
-                  // onDelete={() => onDelete(listing.id)}
-                  // onEdit={() => onEdit(listing.id)}
+                  // onDelete={() => onDelete(buddy.id)}
+                  onEdit={() => onEdit(buddy.id)}
                 />
               ))}
             </ul>

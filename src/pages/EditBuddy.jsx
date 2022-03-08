@@ -7,15 +7,16 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase.config';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../components/Spinner';
 
-function CreateBuddy() {
+function EditBuddy() {
   const [loading, setLoading] = useState(false);
+  const [buddy, setBuddy] = useState(null);
   const [formData, setFormData] = useState({
     type: 'neutral',
     name: '',
@@ -39,13 +40,33 @@ function CreateBuddy() {
 
   const auth = getAuth();
   const navigate = useNavigate();
+  const params = useParams();
   const isMounted = useRef(true);
 
+  // FETCH BUDDY TO EDIT
+  useEffect(() => {
+    setLoading(true);
+    const fetchBuddy = async () => {
+      const docRef = doc(db, 'buddies', params.buddyId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setBuddy(docSnap.data());
+        setFormData({ ...docSnap.data() });
+        setLoading(false);
+      } else {
+        navigate('/');
+        toast.error('Buddy does not exist');
+      }
+    };
+
+    fetchBuddy();
+  }, [params.buddyId, navigate]);
+
+  // SETS USERREF TO LOGGED IN USER
   useEffect(() => {
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          // USER ID ADDED TO FORM DATA
           setFormData({ ...formData, userRef: user.uid });
         } else {
           navigate('/sign-in');
@@ -59,8 +80,12 @@ function CreateBuddy() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
 
+  // REDIRECT IF BUDDY IS NOT USER'S
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (buddy && buddy.userRef !== auth.currentUser.uid) {
+      toast.error('You cannot edit this buddy');
+      navigate('/');
+    }
   }, []);
 
   const onSubmit = async (e) => {
@@ -128,12 +153,15 @@ function CreateBuddy() {
     };
 
     delete formDataCopy.images;
-    const docRef = await addDoc(collection(db, 'buddies'), formDataCopy);
+
+    // UPDATE BUDDY
+    const docRef = doc(db, 'buddies', params.buddyId);
+    await updateDoc(docRef, formDataCopy);
 
     setLoading(false);
 
-    toast.success('Dog added');
-    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
+    toast.success('Buddy updated');
+    navigate(`/${docRef.id}`);
   };
 
   const onMutate = (e) => {
@@ -167,7 +195,6 @@ function CreateBuddy() {
   if (loading) {
     return <Spinner />;
   }
-
   return (
     <div className="profile">
       <header>
@@ -399,7 +426,7 @@ function CreateBuddy() {
 
           {/* CREATE BUDDY BUTTON */}
           <button type="submit" className="primaryButton createListingButton">
-            Add my buddy
+            Edit buddy
           </button>
         </form>
       </main>
@@ -407,4 +434,4 @@ function CreateBuddy() {
   );
 }
 
-export default CreateBuddy;
+export default EditBuddy;
