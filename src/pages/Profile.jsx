@@ -139,6 +139,19 @@ function Profile() {
     }
   };
 
+  const onCancel = async (sessionId) => {
+    if (
+      window.confirm('Are you sure you want to cancel this practice session')
+    ) {
+      await deleteDoc(doc(db, 'sessions', sessionId));
+      const updatedSessions = sessions.filter(
+        (session) => session.id !== sessionId
+      );
+      setSessions(updatedSessions);
+      toast.success('Your training session was successfully canceled');
+    }
+  };
+
   return (
     <div className="profile">
       <header className="profileHeader">
@@ -197,6 +210,7 @@ function Profile() {
                         id={buddy.id}
                         key={session.id}
                         session={session.data}
+                        onCancel={() => onCancel(session.id)}
                       />
                     )
                 )

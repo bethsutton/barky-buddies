@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // ICONS
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
-function SessionItem({ buddy, id, session }) {
+function SessionItem({ buddy, id, session, onCancel }) {
   // const date = session.date.toDate().toDateString();
   // const time = session.date.toDate().toLocaleTimeString('en-US');
   // console.log(session.date);
@@ -35,21 +35,13 @@ function SessionItem({ buddy, id, session }) {
         </div>
       </Link>
 
-      {/* {onDelete && (
+      {onCancel && (
         <FaTrash
           className="removeIcon"
-          fill="rgb(231,76,60)"
-          onClick={() => onDelete(listing.id, listing.name)}
-        />
-      )} */}
-
-      {/* {onEdit && (
-        <FaEdit
-          className="editIcon"
           // fill="rgb(231,76,60)"
-          onClick={() => onEdit(id)}
+          onClick={() => onCancel(session.id)}
         />
-      )} */}
+      )}
     </li>
   );
 }
