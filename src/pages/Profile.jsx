@@ -130,16 +130,14 @@ function Profile() {
     navigate(`/edit-buddy/${buddyId}`);
   };
 
-  // const onDelete = async (listingId) => {
-  //   if (window.confirm('Are you sure you want to delete this listing')) {
-  //     await deleteDoc(doc(db, 'listings', listingId));
-  //     const updatedListings = listings.filter(
-  //       (listing) => listing.id !== listingId
-  //     );
-  //     setListings(updatedListings);
-  //     toast.success('Your listing was successfully deleted');
-  //   }
-  // };
+  const onDelete = async (buddyId) => {
+    if (window.confirm('Are you sure you want to remove this dog')) {
+      await deleteDoc(doc(db, 'buddies', buddyId));
+      const updatedBuddies = buddies.filter((buddy) => buddy.id !== buddyId);
+      setBuddies(updatedBuddies);
+      toast.success('Your dog was successfully removed from your list');
+    }
+  };
 
   return (
     <div className="profile">
@@ -226,7 +224,7 @@ function Profile() {
                   key={buddy.id}
                   buddy={buddy.data}
                   id={buddy.id}
-                  // onDelete={() => onDelete(buddy.id)}
+                  onDelete={() => onDelete(buddy.id)}
                   onEdit={() => onEdit(buddy.id)}
                 />
               ))}
