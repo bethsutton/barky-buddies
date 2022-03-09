@@ -148,6 +148,10 @@ button {
   right: 5px;
 }
 
+.buddy-page {
+  padding-bottom: 10rem;
+}
+
 .pageContainer,
 .buddies,
 .profile,
@@ -1022,4 +1026,25 @@ button {
   margin: 0;
   margin-top: -0.75rem;
   margin-bottom: -0.75rem;
+}
+
+.buddy-page-type-button {
+  margin: 0 auto;
+}
+
+.mapButton {
+  cursor: pointer;
+  background: #219ebc;
+  border-radius: 1rem;
+  padding: 0.85rem 2rem;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1.25rem;
+  width: 80%;
+  max-width: 25rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
 }

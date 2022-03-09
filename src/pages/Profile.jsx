@@ -210,6 +210,7 @@ function Profile() {
                         id={buddy.id}
                         key={session.id}
                         session={session.data}
+                        sessionId={session.id}
                         onCancel={() => onCancel(session.id)}
                       />
                     )

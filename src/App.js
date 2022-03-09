@@ -16,6 +16,7 @@ import Category from './pages/Category';
 import CreateBuddy from './pages/CreateBuddy';
 import CreateSession from './pages/CreateSession';
 import Buddy from './pages/Buddy';
+import Session from './pages/Session';
 import Contact from './pages/Contact';
 import EditBuddy from './pages/EditBuddy';
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/create-session" element={<CreateSession />} />
           <Route path="/edit-buddy/:buddyId" element={<EditBuddy />} />
           <Route path="/:buddyId" element={<Buddy />} />
+          <Route path="/:buddyId/:sessionId" element={<Session />} />
           <Route path="/contact/:parentId" element={<Contact />} />
         </Routes>
         <Navbar />

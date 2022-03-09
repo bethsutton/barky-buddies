@@ -21,14 +21,16 @@ function SessionItem({ buddy, id, session, onCancel }) {
           <div className="categoryListingInfoDiv">
             <p className="categoryListingInfoText">Where: {session.location}</p>
             <p className="categoryListingInfoText">
-              {/* When: {session.date} at {session.time} */}
+              When: {session.date} at {session.time}
             </p>
             <div className="type-button">
               <p className="type-button-text">I am {buddy.type}!</p>
             </div>
             <div className="wanted-button">
               <p className="wanted-button-text">
-                I want a {session.buddyWanted} buddy!
+                {session.buddyWanted === 'excited'
+                  ? `I want an ${session.buddyWanted} buddy!`
+                  : `I want a ${session.buddyWanted} buddy!`}
               </p>
             </div>
           </div>
