@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -35,7 +36,7 @@ function Session() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // console.log(docSnap.data());
+        console.log(docSnap.data());
         setSession(docSnap.data());
         setLoading(false);
       }
@@ -49,16 +50,35 @@ function Session() {
   }
 
   return (
-    <main className="buddy-page">
+    <main>
       {/* SESSION DETAILS */}
 
       <div className="about-section">
         <p className="pageTitle">{session.location}</p>
       </div>
 
-      <Link to={`/${params.buddyId}`} className="primaryButton">
+      <p className="listingLocationTitle">Location</p>
+
+      <div className="leafletContainer">
+        <MapContainer
+          style={{ height: '100%', width: '100%' }}
+          center={[session.geolocation.lat, session.geolocation.lng]}
+          zoom={13}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[session.geolocation.lat, session.geolocation.lng]}>
+            <Popup>{session.location}</Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+
+      {/* <Link to={`/${params.buddyId}`} className="primaryButton">
         Back to Buddy Page
-      </Link>
+      </Link> */}
     </main>
   );
 }
