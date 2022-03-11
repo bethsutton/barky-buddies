@@ -133,7 +133,7 @@ function CreateBuddy() {
     setLoading(false);
 
     toast.success('Dog added');
-    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
+    navigate(`/${docRef.id}`);
   };
 
   const onMutate = (e) => {

@@ -18,7 +18,7 @@ import BuddyItem from '../components/BuddyItem';
 function Category() {
   const [buddies, setBuddies] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [lastFetchedListing, setLastFetchedListing] = useState(null);
+  const [lastFetchedBuddy, setLastFetchedBuddy] = useState(null);
 
   // GET BUDDY TYPE FROM URL
   const params = useParams();
@@ -34,15 +34,15 @@ function Category() {
           buddiesRef,
           where('type', '==', params.buddyType),
           orderBy('timestamp', 'desc'),
-          limit(10)
+          limit(5)
         );
 
         // EXECUTE QUERY
         const querySnap = await getDocs(q);
 
         // FIND LAST VISIBLE LISTING
-        // const lastVisible = querySnap.docs[querySnap.docs.length - 1];
-        // setLastFetchedListing(lastVisible);
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+        setLastFetchedBuddy(lastVisible);
 
         // INITIALIZE EMPTY LISTINGS ARRAY
         const buddies = [];
@@ -66,38 +66,38 @@ function Category() {
   }, [params.buddyType]);
 
   // PAGINATION / LOAD MORE LISTINGS
-  // const onFetchMoreListings = async () => {
-  //   try {
-  //     const listingsRef = collection(db, 'listings');
+  const onFetchMoreBuddies = async () => {
+    try {
+      const buddiesRef = collection(db, 'buddies');
 
-  //     const q = query(
-  //       listingsRef,
-  //       where('type', '==', params.categoryName),
-  //       orderBy('timestamp', 'desc'),
-  //       startAfter(lastFetchedListing),
-  //       limit(10)
-  //     );
+      const q = query(
+        buddiesRef,
+        where('type', '==', params.buddyType),
+        orderBy('timestamp', 'desc'),
+        startAfter(lastFetchedBuddy),
+        limit(5)
+      );
 
-  //     const querySnap = await getDocs(q);
+      const querySnap = await getDocs(q);
 
-  //     const lastVisible = querySnap.docs[querySnap.docs.length - 1];
-  //     setLastFetchedListing(lastVisible);
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+      setLastFetchedBuddy(lastVisible);
 
-  //     const listings = [];
+      const buddies = [];
 
-  //     querySnap.forEach((doc) => {
-  //       return listings.push({
-  //         id: doc.id,
-  //         data: doc.data(),
-  //       });
-  //     });
+      querySnap.forEach((doc) => {
+        return buddies.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
 
-  //     setListings((prevState) => [...prevState, ...listings]);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     toast.error('Could not fetch listings');
-  //   }
-  // };
+      setBuddies((prevState) => [...prevState, ...buddies]);
+      setLoading(false);
+    } catch (error) {
+      toast.error('Could not fetch more buddies');
+    }
+  };
 
   return (
     <div className="category">
@@ -122,11 +122,11 @@ function Category() {
 
           <br />
           <br />
-          {/* {lastFetchedListing && (
-            <p className="loadMore" onClick={onFetchMoreListings}>
+          {lastFetchedBuddy && (
+            <p className="loadMore" onClick={onFetchMoreBuddies}>
               Load More
             </p>
-          )} */}
+          )}
         </>
       ) : (
         <p>We couldn't find any {params.buddyType} buddies</p>

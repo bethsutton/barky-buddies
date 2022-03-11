@@ -19,7 +19,7 @@ function Train() {
   const [buddies, setBuddies] = useState(null);
   const [sessions, setSessions] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [lastFetchedListing, setLastFetchedListing] = useState(null);
+  const [lastFetchedListing, setLastFetchedListing] = useState(null);
 
   useEffect(() => {
     const fetchBuddies = async () => {
@@ -40,7 +40,7 @@ function Train() {
         // EXECUTE QUERY
         const querySnap = await getDocs(q);
 
-        // const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
 
         // INITIALIZE EMPTY LISTINGS ARRAY
         const buddies = [];
@@ -67,7 +67,8 @@ function Train() {
         // EXECUTE QUERY
         const secondQuerySnap = await getDocs(secondQ);
 
-        // const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+        const secondLastVisible =
+          secondQuerySnap.docs[secondQuerySnap.docs.length - 1];
 
         // INITIALIZE EMPTY LISTINGS ARRAY
         const sessions = [];

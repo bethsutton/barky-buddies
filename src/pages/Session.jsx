@@ -53,11 +53,7 @@ function Session() {
     <main>
       {/* SESSION DETAILS */}
 
-      <div className="about-section">
-        <p className="pageTitle">{session.location}</p>
-      </div>
-
-      <p className="listingLocationTitle">Location</p>
+      <p className="listingLocationTitle">Address: {session.location}</p>
 
       <div className="leafletContainer">
         <MapContainer
@@ -76,9 +72,9 @@ function Session() {
         </MapContainer>
       </div>
 
-      {/* <Link to={`/${params.buddyId}`} className="primaryButton">
+      <Link to={`/${params.buddyId}`} className="primaryButton">
         Back to Buddy Page
-      </Link> */}
+      </Link>
     </main>
   );
 }

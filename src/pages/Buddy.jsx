@@ -104,11 +104,18 @@ function Buddy() {
           <p className="type-button-text">I am {buddy.type}!</p>
         </div>
         <p className="pageTitle">About {buddy.name}</p>
-        <div className="about-page-info">
+        <ul className="about-page-info">
           {/* <p className="categoryListingInfoText">Triggers: </p> */}
-          <p className="about-page-info-text">Space needed: {buddy.needs}</p>
-          <p className="about-page-info-text">Goal: {buddy.goal}</p>
-        </div>
+          <li className="about-page-info-text">
+            {buddy.name} is {buddy.age} {buddy.age === 1 ? 'year' : 'years'} old
+          </li>
+          <li className="about-page-info-text">
+            {buddy.name} needs {buddy.needs} of space from another dog
+          </li>
+          <li className="about-page-info-text">
+            {buddy.name}'s goal is to {buddy.goal}
+          </li>
+        </ul>
       </div>
 
       {/* SESSION DETAILS */}
@@ -116,13 +123,14 @@ function Buddy() {
         <div className="about-section">
           <p className="pageTitle">{buddy.name}'s Upcoming Training Sessions</p>
           <ul className="myDogsList">
-            {sessions.map((session) => (
+            {sessions.map((session, index) => (
               <BuddyPageSessionItem
                 buddy={buddy}
                 buddyId={params.buddyId}
                 key={session.id}
                 session={session.data}
                 sessionId={session.id}
+                index={index}
               />
             ))}
           </ul>
