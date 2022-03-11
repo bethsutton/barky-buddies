@@ -514,7 +514,7 @@ button {
 
 .categoryListing {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   margin-bottom: 1rem;
   position: relative;
@@ -529,6 +529,7 @@ button {
   height: 200px;
   border-radius: 1.5rem;
   object-fit: cover;
+  object-position: center;
   margin-right: 10px;
 }
 @media (min-width: 1024px) {

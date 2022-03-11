@@ -110,7 +110,11 @@ function Buddy() {
             {buddy.name} is {buddy.age} {buddy.age === 1 ? 'year' : 'years'} old
           </li>
           <li className="about-page-info-text">
-            {buddy.name} needs {buddy.needs} of space from another dog
+            {buddy.name} needs{' '}
+            {buddy.needs === 'across the street' ? 'to be' : ''} {buddy.needs}{' '}
+            {buddy.needs === '6 feet' ? 'of space' : ''}
+            {buddy.needs === 'a football field' ? 'of space' : ''} from another
+            dog
           </li>
           <li className="about-page-info-text">
             {buddy.name}'s goal is to {buddy.goal}

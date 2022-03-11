@@ -251,7 +251,7 @@ function Profile() {
 
         {/* CREATE A BUDDY */}
         <Link to="/create-buddy" className="primaryButton">
-          Add another dog
+          Add a dog
         </Link>
       </main>
     </div>

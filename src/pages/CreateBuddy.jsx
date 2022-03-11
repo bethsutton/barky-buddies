@@ -305,7 +305,7 @@ function CreateBuddy() {
                 needs === 'no space needed' ? 'formButtonActive' : 'formButton'
               }
               id="needs"
-              value="no space needed"
+              value="no space"
               onClick={onMutate}
             >
               No space needed
