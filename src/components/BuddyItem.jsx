@@ -15,8 +15,11 @@ function BuddyItem({ buddy, id, onEdit, onDelete }) {
         <div className="categoryListingDetails">
           <p className="categoryListingName">{buddy.name}</p>
           <div className="categoryListingInfoDiv">
-            <p className="categoryListingInfoText">Triggers: </p>
-            <p className="categoryListingInfoText">Needs: {buddy.needs}</p>
+            {/* <p className="categoryListingInfoText">Triggers: </p> */}
+            <p className="categoryListingInfoText">
+              Space: {buddy.needs === 'no space' ? 'none needed' : buddy.needs}{' '}
+              {buddy.needs === 'a football field' ? 'away' : ''}
+            </p>
             <p className="categoryListingInfoText">Goal: {buddy.goal}</p>
             <div className="type-button">
               <p className="type-button-text">I am {buddy.type}!</p>

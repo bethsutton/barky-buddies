@@ -20,8 +20,8 @@ function BuddyPageSessionItem({ buddy, buddyId, session, sessionId, index }) {
           <div className="wanted-button">
             <p className="wanted-button-text">
               {session.buddyWanted === 'excited'
-                ? `I want an ${session.buddyWanted} buddy!`
-                : `I want a ${session.buddyWanted} buddy!`}
+                ? `I need an ${session.buddyWanted} buddy!`
+                : `I need a ${session.buddyWanted} buddy!`}
             </p>
           </div>
         </div>
