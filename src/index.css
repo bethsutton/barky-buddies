@@ -615,7 +615,7 @@ button {
 .type-button {
   cursor: pointer;
   background-color: #ffc400;
-  opacity: 85%;
+  opacity: 95%;
   border-radius: 0.5rem;
   padding: 0.85rem 2rem;
   color: #ffffff;
@@ -954,6 +954,7 @@ button {
 
 .formInputFile {
   width: 100%;
+  color: #000000;
 }
 .formInputFile::-webkit-file-upload-button {
   background-color: #ffc400;
@@ -1041,7 +1042,7 @@ li.about-page-info-text {
 .wanted-button {
   cursor: pointer;
   background-color: #fb8500;
-  opacity: 85%;
+  opacity: 95%;
   border-radius: 0.5rem;
   padding: 0.85rem 0.75rem;
   color: #ffffff;

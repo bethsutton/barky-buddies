@@ -19,7 +19,8 @@ function Train() {
   const [buddies, setBuddies] = useState(null);
   const [sessions, setSessions] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [lastFetchedListing, setLastFetchedListing] = useState(null);
+  const [lastFetchedBuddy, setLastFetchedBuddy] = useState(null);
+  const [lastFetchedSession, setLastFetchedSession] = useState(null);
 
   useEffect(() => {
     const fetchBuddies = async () => {
@@ -30,17 +31,16 @@ function Train() {
         // CREATE A QUERY
         const q = query(
           buddiesRef,
-          // where('sessions', '==', true),
-          // where('sessions.length', '>', 0),
           where('sessions', '!=', null),
           orderBy('sessions', 'desc'),
-          limit(10)
+          limit(5)
         );
 
         // EXECUTE QUERY
         const querySnap = await getDocs(q);
 
-        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+        const lastVisibleBuddy = querySnap.docs[querySnap.docs.length - 1];
+        setLastFetchedBuddy(lastVisibleBuddy);
 
         // INITIALIZE EMPTY LISTINGS ARRAY
         const buddies = [];
@@ -61,14 +61,15 @@ function Train() {
         const secondQ = query(
           sessionsRef,
           orderBy('timestamp', 'desc'),
-          limit(10)
+          limit(5)
         );
 
         // EXECUTE QUERY
         const secondQuerySnap = await getDocs(secondQ);
 
-        const secondLastVisible =
+        const lastVisibleSession =
           secondQuerySnap.docs[secondQuerySnap.docs.length - 1];
+        setLastFetchedSession(lastVisibleSession);
 
         // INITIALIZE EMPTY LISTINGS ARRAY
         const sessions = [];
@@ -90,6 +91,70 @@ function Train() {
 
     fetchBuddies();
   }, []);
+
+  // PAGINATION / LOAD MORE LISTINGS
+  const onFetchMoreSessions = async () => {
+    try {
+      const buddiesRef = collection(db, 'buddies');
+
+      const q = query(
+        buddiesRef,
+        where('sessions', '!=', null),
+        orderBy('sessions', 'desc'),
+        startAfter(lastFetchedBuddy),
+        limit(5)
+      );
+
+      const querySnap = await getDocs(q);
+
+      const lastVisibleBuddy = querySnap.docs[querySnap.docs.length - 1];
+      setLastFetchedBuddy(lastVisibleBuddy);
+
+      const buddies = [];
+
+      querySnap.forEach((doc) => {
+        return buddies.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setBuddies((prevState) => [...prevState, ...buddies]);
+
+      const sessionsRef = collection(db, 'sessions');
+
+      const secondQ = query(
+        sessionsRef,
+        orderBy('timestamp', 'desc'),
+        startAfter(lastFetchedSession),
+        limit(5)
+      );
+
+      // EXECUTE QUERY
+      const secondQuerySnap = await getDocs(secondQ);
+
+      const lastVisibleSession =
+        secondQuerySnap.docs[secondQuerySnap.docs.length - 1];
+      setLastFetchedSession(lastVisibleSession);
+
+      // INITIALIZE EMPTY LISTINGS ARRAY
+      const sessions = [];
+
+      // FOR EACH DOC IN QUERY SNAPSHOT,
+      secondQuerySnap.forEach((doc) => {
+        return sessions.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setSessions((prevState) => [...prevState, ...sessions]);
+      setLoading(false);
+    } catch (error) {
+      toast.error('Could not fetch more sessions');
+      console.log(error);
+    }
+  };
 
   return (
     <div className="category">
@@ -119,11 +184,11 @@ function Train() {
           </main>
           <br />
           <br />
-          {/* {lastFetchedListing && (
-            <p className="loadMore" onClick={onFetchMoreListings}>
+          {lastFetchedSession && (
+            <p className="loadMore" onClick={onFetchMoreSessions}>
               Load More
             </p>
-          )} */}
+          )}
         </>
       ) : (
         <p>No training sessions</p>

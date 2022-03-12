@@ -115,7 +115,6 @@ function Category() {
             <div className="categoryListings">
               {buddies.map((buddy) => (
                 <BuddyItem buddy={buddy.data} id={buddy.id} key={buddy.id} />
-                // <p key={buddy.id}>{buddy.data.name}</p>
               ))}
             </div>
           </main>
