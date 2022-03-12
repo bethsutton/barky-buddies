@@ -5,7 +5,7 @@ import { getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyCGVCdUygyExJBpP0pJ60I4Hme5D_c8Q3o',
-  authDomain: 'https://barky-buddies.vercel.app/',
+  authDomain: 'barky-buddies.firebaseapp.com',
   projectId: 'barky-buddies',
   storageBucket: 'barky-buddies.appspot.com',
   messagingSenderId: '65686957953',
