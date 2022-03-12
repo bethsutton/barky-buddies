@@ -93,7 +93,9 @@ function Buddy() {
                 backgroundSize: 'cover',
               }}
               className="swiperSlideDiv"
-            ></div>
+            >
+              <p className="swiperSlideText">{buddy.name}</p>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
