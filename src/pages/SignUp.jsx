@@ -99,6 +99,7 @@ function SignUp() {
                 type={showPassword ? 'text' : 'password'}
                 className="passwordInput"
                 placeholder="Password"
+                minLength="7"
                 id="password"
                 value={password}
                 onChange={onChange}
