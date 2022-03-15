@@ -4,9 +4,31 @@ import { Link } from 'react-router-dom';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 
 function SessionItem({ buddy, id, session, onCancel }) {
-  // const date = session.date.toDate().toDateString();
-  // const time = session.date.toDate().toLocaleTimeString('en-US');
-  // console.log(session.date);
+  // GET YEAR, MONTH, AND DATE
+  let year = session.date.substr(0, 4);
+  let month = session.date.substr(5, 2);
+  let day = session.date.substr(8);
+
+  // CONVERT TIME FROM MILITARY TO STANDARD
+  var time = session.time;
+
+  time = time.split(':');
+
+  var hours = Number(time[0]);
+  var minutes = Number(time[1]);
+
+  let timeValue;
+
+  if (hours > 0 && hours <= 12) {
+    timeValue = '' + hours;
+  } else if (hours > 12) {
+    timeValue = '' + (hours - 12);
+  } else if (hours == 0) {
+    timeValue = '12';
+  }
+
+  timeValue += minutes < 10 ? ':0' + minutes : ':' + minutes;
+  timeValue += hours >= 12 ? 'pm' : 'am';
 
   return (
     <li className="categoryListing">
@@ -21,7 +43,7 @@ function SessionItem({ buddy, id, session, onCancel }) {
           <div className="categoryListingInfoDiv">
             <p className="categoryListingInfoText">Where: {session.location}</p>
             <p className="categoryListingInfoText">
-              When: {session.date} at {session.time}
+              When: {`${month}/${day}/${year}`} at {timeValue}
             </p>
             <div className="type-button">
               <p className="type-button-text">I am {buddy.type}!</p>
