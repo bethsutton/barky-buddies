@@ -401,6 +401,12 @@ button {
     max-height: 600px;
     border-radius: 25px;
   }
+
+  .exploreSwiperSlideDiv {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .swiper-pagination-bullet-active {
@@ -417,7 +423,7 @@ button {
 .exploreSwiperSlideDiv {
   position: relative;
   width: 100%;
-  height: 20rem;
+  height: 100%;
 }
 
 .swiperSlideImg {
@@ -508,6 +514,17 @@ button {
 @media (min-width: 1024px) {
   .exploreCategoryImg {
     width: 300px;
+    margin: 10px;
+  }
+
+  .exploreCategoriesGroup {
+    display: inline-flex;
+    justify-content: space-around;
+    margin: 0px;
+  }
+
+  .exploreCategoryName {
+    margin-left: 15px;
   }
 }
 
