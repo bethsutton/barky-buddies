@@ -1,15 +1,15 @@
-# Formula 1 Season Tracker
+# Barky Buddies
 
 ![screenshot of website](./public/BB-medium.png)
 
 ## Description
 
-> Mobile-first web app for dog owners to create an account and buddy profile for their dogsmatch with other users
-> Users can schedule training sessions using OAuth and Google Firestore cloud database
+> This is a mobile-first web app for to help connect reactive dog owners with training partners in their area.
+> Users can create an account and buddy profiles for their dogs and post training session helper requests for "neutral", "excited", or "reactive" buddies depending on their training needs.
 
 ## Technologies
 
-> This app was built using React and Google Firebase. It uses the Google Geocoding to convert addresses into geographic coordinates to generate a Leaflet map.
+> This app was built using React, OAuth, and Google Firebase. It uses the Google Geocoding to convert addresses into geographic coordinates to generate a Leaflet map.
 
 ## Usage
 
