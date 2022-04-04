@@ -22,6 +22,10 @@ function Train() {
   const [lastFetchedBuddy, setLastFetchedBuddy] = useState(null);
   const [lastFetchedSession, setLastFetchedSession] = useState(null);
 
+  // TO FIX MATCHING PROBLEM:
+  // Add sessions array to buddy item in buddies collection
+  // When creating session, add session ID to corresponding buddy item
+
   useEffect(() => {
     const fetchBuddies = async () => {
       try {
